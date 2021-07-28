@@ -1,3 +1,6 @@
+###################################################################################
+# @class: List of Points that act as waypoints for the track
+###################################################################################
 class WayPoints:
     def __init__(self, textFile):
         self.wayPoints = []
@@ -14,7 +17,9 @@ class WayPoints:
     def returnWayPoints(self):
         return self.wayPoints
 
-
+###################################################################################
+# @class: Individual Point
+###################################################################################
 class Point:
     def __init__(self, x, z):
         self.x = x
