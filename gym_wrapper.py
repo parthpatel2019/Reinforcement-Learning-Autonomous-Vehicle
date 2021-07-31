@@ -64,7 +64,6 @@ class DonkeySimEnv:
         observationReceived, _, done, info = self.env.step(send_move)
         self.imageObservation = observationReceived
         reward_value = getReward(observationReceived=observationReceived, done=done, info=info, waypoints=self.waypoints)
-        print(reward_value)
         return observationReceived, reward_value, done, info, (time.time() - self.current_time) # How long the car has stayed on the track for the current iteration
 
     ###################################################################################

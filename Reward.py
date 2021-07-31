@@ -25,7 +25,7 @@ def distCalc(point, x_coordinate, z_coordinate):
 # @return: The Reward
 ###################################################################################
 def getReward(observationReceived, done, info, waypoints):
-    new_reward = -1
+    new_reward = 0
     if(done == False):
         new_reward += 1
         for point in waypoints: # Cycle through way points and see if car is within radius of it
@@ -34,4 +34,6 @@ def getReward(observationReceived, done, info, waypoints):
                     new_reward += 1
                     point.hit = True
                     print("Hit Waypoint: ", point.x, " ", point.z)
+    else:
+        new_reward = -1.5
     return new_reward

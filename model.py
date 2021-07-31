@@ -18,7 +18,7 @@ class Model_Net(nn.Module):
 
     # Forward Pass the image
     def forward(self, x):
-      x = self.model(x[None,...])
+      x = self.model(x)
       return x
 
 ###################################################################################
