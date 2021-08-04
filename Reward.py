@@ -24,16 +24,15 @@ def distCalc(point, x_coordinate, z_coordinate):
 # @param: info - Type: Json - Contains: cte, (x, y, z) coordinates, speed, and hit 
 # @return: The Reward
 ###################################################################################
-def getReward(observationReceived, done, info, waypoints):
-    new_reward = 0
+def getReward(observationReceived, tele, done, waypoints):
+    new_reward = -10
     if(done == False):
-        new_reward += 1
-        for point in waypoints: # Cycle through way points and see if car is within radius of it
-            if (point.hit == False): # If the waypoint has not been hit on the current iteration
-                if(distCalc(point, float(info['pos'][0]), float(info['pos'][2])) < MAX_DISTANCE_FROM_WAYPOINT):
+        for point in waypoints:  # Cycle through way points and see if car is within radius of it
+            if (point.hit == False):  # If the waypoint has not been hit on the current iteration
+                if(distCalc(point, float(tele.pos_x), float(tele.pos_z)) < MAX_DISTANCE_FROM_WAYPOINT):
                     new_reward += 1
                     point.hit = True
                     print("Hit Waypoint: ", point.x, " ", point.z)
-    else:
-        new_reward = -1.5
+        if (tele.cte > -0.9 and tele.cte < 0.4):
+            new_reward += 20
     return new_reward

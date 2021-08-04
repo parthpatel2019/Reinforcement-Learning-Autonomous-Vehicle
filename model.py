@@ -13,7 +13,7 @@ class Model_Net(nn.Module):
     # Initialize the Model
     def __init__(self):
         super(Model_Net, self).__init__()
-        self.model = torchvision.models.resnet18(pretrained=True)
+        self.model = torchvision.models.resnet18(pretrained=False)
         self.model.fc = torch.nn.Linear(512, 3)
 
     # Forward Pass the image
@@ -31,7 +31,7 @@ class Model_Trainer:
         self.gamma = gamma # Gamme value
         self.model = model # Model passed in for training
         self.optimizer = optim.Adam(model.parameters(), lr=self.lr) # Optimizer
-        self.criterion = nn.MSELoss() # Type of Loss Function
+        self.criterion = nn.MSELoss()  # Type of Loss Function
 
 
     #############################################################################
@@ -62,7 +62,8 @@ class Model_Trainer:
             Q_new = reward_unsqueeze[idx]
             if not done_unsqueeze[idx]: # Use all the non-game over moves for training
                 # Take reward given by state + action and add it to the model's prediction
-                Q_new = reward_unsqueeze[idx] + self.gamma * torch.max(self.model(next_state_unsqueeze[idx][None, ...]))
+                next_prediction = self.model(next_state_unsqueeze[idx][None, ...])
+                Q_new = reward_unsqueeze[idx] + self.gamma * torch.max(next_prediction)
             target[idx][torch.argmax(action[idx]).item()] = Q_new # Set the Target prediction to the new Q_value
 
         self.optimizer.zero_grad() # Zero out Gradients

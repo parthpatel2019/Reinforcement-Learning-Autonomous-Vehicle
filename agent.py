@@ -11,14 +11,14 @@ from model import Model_Net, Model_Trainer
 ########################################################################################
 MAX_MEMORY = 100000 # Max amount of memories the deque data structure can hold
 BATCH_SIZE = 64
-LR = 0.1
+LR = 0.9
 
 
 class Agent:
     def __init__(self):
         self.n_games = 0 # Current Game it is on
         self.games = 50 # Number of Total Game
-        self.gamma = 0.9  # Discount Rate / Smaller than 1
+        self.gamma = 0.1  # Discount Rate / Smaller than 1
         self.memory = deque(maxlen=MAX_MEMORY) # Will pop data if length because greater than max length
         self.model = Model_Net()
         self.trainer = Model_Trainer(model=self.model, lr=LR, gamma=self.gamma)
