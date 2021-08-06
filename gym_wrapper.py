@@ -82,7 +82,7 @@ class DonkeySimEnv:
         self.TimeForScoreEnabled = 1 # TimerForScoreEnabled=1 indicates the car has not started moving so timer is not enabled
         self.waypoints = WayPoints(textFile='circuit_points.txt').returnWayPoints() # Get waypoints for the specific track (Used for reward function)
         self.default_throttle = 0.6 # Default throttle value
-        self.MAX_CTE = 5
+        self.MAX_CTE = 7
         self.pos_x = 0
         self.pos_z = 0
 
@@ -107,11 +107,13 @@ class DonkeySimEnv:
         observationReceived, tele, lidar, x, y, z, speed, cte = self.gym_env.step(steering_dictionary[np.argmax(action)], self.default_throttle, 0, False)
         self.imageObservation = observationReceived
         done = False
-        if ((abs(cte) > self.MAX_CTE and abs(cte) < 8) or abs(self.pos_x - x) < 1 and abs(self.pos_z - z) < 1 and speed < 1 and (time.time() - self.current_time) > 2):
+        if(tele.hit != "none"):
+            done = True
+        if ((abs(cte) > self.MAX_CTE) or abs(self.pos_x - x) < 1 and abs(self.pos_z - z) < 1 and speed < 1 and (time.time() - self.current_time) > 5):
             done = True
         self.pos_x = x
         self.pos_z = z
-        reward_value = getReward(observationReceived=observationReceived, tele=tele, done=done, waypoints=self.waypoints)
+        reward_value = getReward(observationReceived=observationReceived, tele=tele, done=tele.hit, waypoints=self.waypoints)
         # How long the car has stayed on the track for the current iteration
         return observationReceived, reward_value, done, (time.time() - self.current_time)
 
