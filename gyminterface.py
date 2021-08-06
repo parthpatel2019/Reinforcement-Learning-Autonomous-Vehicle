@@ -187,7 +187,7 @@ class GymInterface(SDClient):
                           'vel_x', 'vel_y', 'vel_z', 'on_road',
                           'progress_on_shortest_path']
             types = [float, float, float, float,
-                     float, float, int, float,
+                     float, float, str, float,
                      float, float, float,
                      float, float, float, float,
                      float, float, float,

@@ -1,7 +1,9 @@
 from agent import Agent
 from gym_wrapper import DonkeySimEnv
+import time
 
 def trainFunction():   
+    time_track = time.time()
     plot_scores = []
     training_evaluation_counter = 2
     train_ratio = 5
@@ -19,6 +21,8 @@ def trainFunction():
             state_new = agent.get_state(game)  # Get new state
             agent.train_short_memory(state_old, final_move, reward, state_new, done)  # Train short memory
             agent.remember(state_old, final_move, reward, state_new, done)  # Remember
+        if (time.time() - time_track > 50):
+            done = True
         if done:  # Train long term memory
             game.reset()
             agent.n_games += 1
@@ -43,6 +47,7 @@ def trainFunction():
                 print("SETTING DRIVING MODE: Training")
                 agent.training = True  # TRAINING MODE
             game.teleport()
+            time_track = time.time()
 
 if __name__ == '__main__':
     trainFunction()
