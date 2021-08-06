@@ -32,6 +32,7 @@ How to use this RL Car.
 
 
 Credit:
+
 (Triton-Racer-Sim)[https://github.com/Triton-AI/Triton-Racer-Sim] for the base gyminterface.py and telemetryPack.py files.
 
 (Python-Engineer)[https://github.com/python-engineer] - Code based off his implementation of Snake AI
