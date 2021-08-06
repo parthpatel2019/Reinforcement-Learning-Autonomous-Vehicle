@@ -25,7 +25,7 @@ How to use this RL Car.
 - TelemetryPack.py
   - This file is used in coordination with gyminterface for raw data communication. 
 - way_points.py
-  This file loads in the selected waypoint coordinates from a .txt file and can be used in teleportation or reward functions.
+  - This file loads in the selected waypoint coordinates from a .txt file and can be used in teleportation or reward functions.
   
  
   
