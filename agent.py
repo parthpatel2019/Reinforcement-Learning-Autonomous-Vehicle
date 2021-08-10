@@ -11,7 +11,7 @@ from model import Model_Net, Model_Trainer
 ########################################################################################
 MAX_MEMORY = 100000 # Max amount of memories the deque data structure can hold
 BATCH_SIZE = 64
-LR = 0.9
+LR = 0.5
 
 
 class Agent:

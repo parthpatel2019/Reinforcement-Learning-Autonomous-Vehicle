@@ -23,11 +23,13 @@ def trainFunction():
             agent.remember(state_old, final_move, reward, state_new, done)  # Remember
         if (time.time() - time_track > 50):
             done = True
+            
         if done:  # Train long term memory
             game.reset()
             agent.n_games += 1
             if (agent.training == True):
                 agent.train_long_memory()
+                game.teleport()
             if score > record:
                     record = score
                     agent.model_save()
@@ -46,7 +48,8 @@ def trainFunction():
             elif(training_evaluation_counter == 1 and len(plot_scores) != 1):
                 print("SETTING DRIVING MODE: Training")
                 agent.training = True  # TRAINING MODE
-            game.teleport()
+            if (agent.training == True):
+                game.teleport()
             time_track = time.time()
 
 if __name__ == '__main__':

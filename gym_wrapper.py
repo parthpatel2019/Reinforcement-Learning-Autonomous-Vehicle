@@ -67,9 +67,9 @@ class DonkeySimEnv:
                 "img_d": 3,
                 "img_enc": 'JPG',
                 "offset_x": 0,
-                "offset_y": 0,
+                "offset_y": 2.0,
                 "offset_z": 0,
-                "rot_x": 0,
+                "rot_x": 20.0,
                 # "rot_y": 180,
             },
         }
@@ -82,7 +82,7 @@ class DonkeySimEnv:
         self.TimeForScoreEnabled = 1 # TimerForScoreEnabled=1 indicates the car has not started moving so timer is not enabled
         self.waypoints = WayPoints(textFile='circuit_points.txt').returnWayPoints() # Get waypoints for the specific track (Used for reward function)
         self.default_throttle = 0.6 # Default throttle value
-        self.MAX_CTE = 7
+        self.MAX_CTE = 5
         self.pos_x = 0
         self.pos_z = 0
 

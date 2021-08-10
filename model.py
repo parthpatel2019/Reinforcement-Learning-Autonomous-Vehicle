@@ -13,7 +13,7 @@ class Model_Net(nn.Module):
     # Initialize the Model
     def __init__(self):
         super(Model_Net, self).__init__()
-        self.model = torchvision.models.resnet18(pretrained=False)
+        self.model = torchvision.models.resnet18(pretrained=True)
         self.model.fc = torch.nn.Linear(512, 3)
 
     # Forward Pass the image
