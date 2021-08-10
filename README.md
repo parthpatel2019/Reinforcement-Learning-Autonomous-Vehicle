@@ -1,13 +1,21 @@
 # Reinforcement-Learning-Autonomous-Vehicle
 Reinforcement Learning To Create An Autonomous Vehicle On The Donkey-Gym Environment.
 
-How to use this RL Car.
+## Model during one of its training iterations
+![Training Gif](./Images/RLTrainingGIF.gif)
+
+## How to use this RL Car.
 1. Set the vehicle settings accordingly in the gym_wrapper.py.
 2. Change the location of the waypoint .txt file in gym_wrapper.py
 3. Create your own reward function in Reward.py
 4. Create the model architecture to be used in model.py
 5. Modify the number of games/Learning Rate/Batch size in agent.py
 6. Choose the amount of games you will train for before evaluating the model by modifying the train_ratio value in main.py
+
+## Features
+1. By default, it uses a Resnet-18 model
+2. It will train for a specified amount of iterations based on random movements before doing an evaluation iteration solely off of the model predictions.
+3. It teleports to different parts of the track after each iteration.
 
 ## List of all Files
 - Agent.py
@@ -35,4 +43,4 @@ Credit:
 
 (Triton-Racer-Sim)[https://github.com/Triton-AI/Triton-Racer-Sim] for the base gyminterface.py and telemetryPack.py files.
 
-(Python-Engineer)[https://github.com/python-engineer] - Code based off his implementation of Snake AI
+(Python-Engineer)[https://github.com/python-engineer] - Design implementation based on Snake AI
